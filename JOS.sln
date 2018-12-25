@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28010.2026
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JOS", "JOS\JOS.csproj", "{ECD740BE-0A20-43B9-8257-82F471461EE5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JOSTester", "JOSTester\JOSTester.csproj", "{55EC1DD0-2B62-46EA-A31E-13A108D2551D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{ECD740BE-0A20-43B9-8257-82F471461EE5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ECD740BE-0A20-43B9-8257-82F471461EE5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ECD740BE-0A20-43B9-8257-82F471461EE5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ECD740BE-0A20-43B9-8257-82F471461EE5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{55EC1DD0-2B62-46EA-A31E-13A108D2551D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{55EC1DD0-2B62-46EA-A31E-13A108D2551D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{55EC1DD0-2B62-46EA-A31E-13A108D2551D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{55EC1DD0-2B62-46EA-A31E-13A108D2551D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {BE6B5AF7-BFA0-4C28-B406-7AA5E702AC20}
+	EndGlobalSection
+EndGlobal
