@@ -17,6 +17,8 @@ namespace JOS
         public List<double> Aii;
         public string absofilename;
         public double n;
+        public double amd=0;
+        public double fmd;
         public double sumrate = 0;
         public double TwoJPlusOne;
         public Multiplet()
@@ -74,7 +76,23 @@ namespace JOS
             n = double.Parse(line[1], CultureInfo.InvariantCulture);
             for (int i = 1; i < data.Length; i++)
             {
-                string[] lines = data[i].Split(separator);
+                string[] linijka;
+                string[] lines;
+                if (data[i].Contains("#"))
+                {
+                    linijka = data[i].Split('#');
+                    lines = linijka[0].Split(separator);
+                    //Console.WriteLine(linijka[1]);
+                    string amdstring="";
+                    if (linijka[1].ToLower().Contains("amd")) amdstring = linijka[1].Split('=')[1];
+                    Double.TryParse(amdstring, out amd);
+                    Console.WriteLine(amdstring+" "+amd);
+                }
+                else
+                {
+                    lines = data[i].Split(separator);
+                }
+            
                 lambda0.Add(1.0 / double.Parse(lines[0], CultureInfo.InvariantCulture));
                 u2.Add(double.Parse(lines[1], CultureInfo.InvariantCulture));
                 u4.Add(double.Parse(lines[2], CultureInfo.InvariantCulture));
@@ -97,6 +115,7 @@ namespace JOS
         public void ReportRates(out string msg)
         {
             int size = u2.Count;
+            
             msg = "Wavenumber\t Transition rate\tBranching ratio\r\n";
 
             for (int i = 0; i < size; i++)
@@ -105,7 +124,11 @@ namespace JOS
 
             }
             msg += "Summary rate = " + (sumrate).ToString("G5") + " which amounts to lifetime " + (1000.0 / sumrate).ToString("G5") + " ms\r\n";
-
+            if (amd != 0)
+            {
+                msg += "Magnetic dipole rate Amd= " + (amd * n * n * n).ToString() + " \r\n";
+                msg += "Summary rate including magnetic dipole = " + (sumrate+amd * n * n * n).ToString("G5") + " which amounts to lifetime " + (1000.0 / (sumrate+amd*n*n*n)).ToString("G5") + " ms\r\n";
+            }
         }
         public void ReportRates(out string msg, out string latex)
         {
@@ -126,6 +149,11 @@ namespace JOS
             latex += "\\multicolumn{4}{|c|}{$\\Sigma A$ = " + (sumrate).ToString("G5") + " which is equal to $\\tau$=" + (1000.0 / sumrate).ToString("G5") + " ms}\\cr\r\n";
             latex += "\\hline";
             latex += "\\end{tabular}\r\n";
+            if (amd != 0)
+            {
+                msg += "Magnetic dipole rate Amd= " + (amd * n * n * n).ToString() + " \r\n";
+                msg += "Summary rate including magnetic dipole = " + (sumrate + amd * n * n * n).ToString("G5") + " which amounts to lifetime " + (1000.0 / (sumrate + amd * n * n * n)).ToString("G5") + " ms\r\n";
+            }
 
         }
         public void DumpEmidata(out string msg)
